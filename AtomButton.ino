@@ -40,13 +40,13 @@ void updateAnimation(bool pressed) {
   }
   if (pressed) {
     for (int c = 0; c < 10; c++) {
-      canvas.pushSprite(32, 40 - c*10);
-      canvasTitle.pushSprite(0, 0);
-      delay(50);
+      canvas.pushSprite(32, 40);
+      M5.Display.invertDisplay(true);
+      delay(100);
     }
   } else {
     canvas.pushSprite(32, 40);
-    M5.Display.display();
+    M5.Display.invertDisplay(false);
   }
 }
 
@@ -111,9 +111,7 @@ void loop() {
   }
 
   if (M5.BtnA.wasSingleClicked()) {
-    M5.Display.setTextColor(TFT_RED);
     update = true;
-    M5.Display.setFont(&fonts::DejaVu40);
     if (mode == 0) {
       sendPress2(HID_KEY_GUI_LEFT, HID_KEY_L, 0);
     } else if (mode == 1) {
